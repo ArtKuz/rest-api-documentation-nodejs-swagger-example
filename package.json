@@ -1,0 +1,24 @@
+{
+  "name": "bookapi",
+  "version": "1.0.0",
+  "description": "RESTful Web Services with Node.js and Express",
+  "main": "app.js",
+  "author": "Artem Kuzvsov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.5",
+    "swagger-jsdoc": "^1.9.1",
+    "swagger-ui": "^2.2.10"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-env": "^0.4.0",
+    "supertest": "^1.2.0",
+    "should": "^10.0.0",
+    "sinon": "^1.17.4"
+  }
+}
