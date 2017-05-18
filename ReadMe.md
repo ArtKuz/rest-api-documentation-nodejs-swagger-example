@@ -1,8 +1,7 @@
 RESTful Web Services with Node.js, Express and Swagger
 ======================================================
-***
 
-Пример разработки RESTful API на Node.js.  
+Пример разработки REST API на Node.js.  
 
 Пример на основе библиотеки книг.  
 
@@ -12,7 +11,9 @@ RESTful Web Services with Node.js, Express and Swagger
 `npm i`  
 `gulp` - запуск проекта.  
 
-Документация будет доступна по адресу [http://localhost:8000/api_doc/](http://localhost:8000/api_doc/)
+Документация будет доступна по адресам:
+* [http://localhost:8000/api-doc-ui2/](http://localhost:8000/api-doc-ui2/)
+* [http://localhost:8000/api-doc-ui3/](http://localhost:8000/api-doc-ui3/)
 
 API
 ---
@@ -29,3 +30,12 @@ Tests (unit tests with mocha and integration tests)
 ---------------------------------------------------
 
 `gulp test`  
+
+Как развернуть БД с тестовыми данными
+-------------------------------------
+Через **Tertminal** заходим в корень проекта.  
+```bash
+mongo
+load('./migrations/init.js')
+quit()
+```

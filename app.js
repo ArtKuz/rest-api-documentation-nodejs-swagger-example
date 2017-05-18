@@ -2,20 +2,18 @@
 
 const express = require('express'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    swaggerJSDoc = require('swagger-jsdoc'); // для POST запросов
+    bodyParser = require('body-parser'); // для POST запросов;
 
 const app = express(),
     port = process.env.PORT || 3000,
     Book = require('./models/bookModel'), // определяем модель данных
     bookRouter = require('./routes/bookRoutes')(Book); // модель данных передаём в роутер
 
-let db;
 
 if (process.env.ENV == 'Test') {
-    db = mongoose.connect('mongodb://localhost/bookAPI_test');
+    mongoose.connect('mongodb://localhost/libraryAPI_test');
 } else {
-    db = mongoose.connect('mongodb://localhost/bookAPI')
+    mongoose.connect('mongodb://localhost/libraryAPI');
 }
 
 app.use(bodyParser.urlencoded({
@@ -36,22 +34,22 @@ app.listen(port, () => {
     console.log('Running on PORT: ' + port);
 });
 
-const swaggerDefinition = {
-    info: {
-        title: 'Library API',
-        version: '1.0.0',
-        description: 'API для библиотеки',
+const swaggerSpec = require('swagger-jsdoc')({
+    swaggerDefinition: {
+        swagger: '2.0',
+        info: {
+            title: 'Library API',
+            version: '1.0.0',
+            description: 'API для библиотеки'
+        },
+        host: `localhost:${port}`,
+        basePath: '/',
+        schemes: [
+            'http',
+        ],
     },
-    host: `localhost:${port}`,
-    basePath: '/'
-};
-
-const options = {
-    swaggerDefinition: swaggerDefinition,
     apis: ['./routes/*.js', './models/*.yaml']
-};
-
-const swaggerSpec = swaggerJSDoc(options);
+});
 
 app.get('/swagger.json', function(req, res) {
     res.setHeader('Content-Type', 'application/json');

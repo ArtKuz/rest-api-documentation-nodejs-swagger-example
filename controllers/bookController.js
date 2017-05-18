@@ -4,7 +4,7 @@ const bookController = function(Book) {
     return {
         // добавление новой книги
         post(req, res) {
-            let book = new Book(req.body);
+            const book = new Book(req.body);
 
             // title - обяязательный параметр
             if (!req.body.title) {
@@ -18,7 +18,7 @@ const bookController = function(Book) {
         },
         // список книг
         get(req, res) {
-            let query = {};
+            const query = {};
 
             // список книг по определенному жанру
             if (req.query.genre) {

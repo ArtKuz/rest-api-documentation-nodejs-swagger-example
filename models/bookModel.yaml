@@ -1,25 +1,29 @@
-definitions:
-  Book:
-    properties:
-      title:
-        name: title
-        description: Название книги
-        in: formData
-        required: true
-        type: string
-      author:
-        name: author
-        description: Автор
-        in: formData
-        type: string
-      genre:
-        name: genre
-        description: Жанр
-        in: formData
-        type: string
-        enum: ['ужасы', 'детектив', 'обучение', 'детский', 'фантастика', 'фэнтези']
-      read:
-        name: read
-        description: Прочитана
-        in: formData
-        type: boolean
+parameters:
+  title:
+    name: title
+    description: Название книги
+    in: formData
+    required: true
+    type: string
+  author:
+    name: author
+    description: Автор
+    in: formData
+    type: string
+  genre:
+    name: genre
+    description: Жанр
+    in: formData
+    type: string
+    enum:
+      - ужасы
+      - детектив
+      - обучение
+      - детский
+      - фантастика
+      - фэнтези    
+  read:
+    name: read
+    description: Прочитана
+    in: formData
+    type: boolean

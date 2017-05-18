@@ -18,10 +18,10 @@ const routes = function(Book) {
          *     produces:
          *       - application/json
          *     parameters:
-         *       - $ref: '#/definitions/Book/properties/title'
-         *       - $ref: '#/definitions/Book/properties/author'
-         *       - $ref: '#/definitions/Book/properties/genre'
-         *       - $ref: '#/definitions/Book/properties/read'
+         *       - $ref: '#/parameters/title'
+         *       - $ref: '#/parameters/author'
+         *       - $ref: '#/parameters/genre'
+         *       - $ref: '#/parameters/read'
          *     responses:
          *       201:
          *         description: Created
@@ -112,10 +112,10 @@ const routes = function(Book) {
          *         in: path
          *         required: true
          *         type: string
-         *       - $ref: '#/definitions/Book/properties/title'
-         *       - $ref: '#/definitions/Book/properties/author'
-         *       - $ref: '#/definitions/Book/properties/genre'
-         *       - $ref: '#/definitions/Book/properties/read'
+         *       - $ref: '#/parameters/title'
+         *       - $ref: '#/parameters/author'
+         *       - $ref: '#/parameters/genre'
+         *       - $ref: '#/parameters/read'
          *     responses:
          *       200:
          *         description: Ok
@@ -157,9 +157,9 @@ const routes = function(Book) {
          *         description: Название книги
          *         in: formData
          *         type: string
-         *       - $ref: '#/definitions/Book/properties/author'
-         *       - $ref: '#/definitions/Book/properties/genre'
-         *       - $ref: '#/definitions/Book/properties/read'
+         *       - $ref: '#/parameters/author'
+         *       - $ref: '#/parameters/genre'
+         *       - $ref: '#/parameters/read'
          *     responses:
          *       200:
          *         description: Ok
@@ -213,10 +213,10 @@ const routes = function(Book) {
         }));
 
     bookRouter
-        .route('/authors')
+        .route('/author')
         /**
          * @swagger
-         * /api/books/authors:
+         * /api/books/author:
          *   get:
          *     deprecated: true
          *     tags:
@@ -224,21 +224,20 @@ const routes = function(Book) {
          *     description: Получить список книг по авторам
          *     produces:
          *       - application/json
+         *     parameters:
+         *       - name: author
+         *         description: Автор
+         *         in: query
+         *         type: string
          *     responses:
          *       200:
          *         description: Ok
+         *       400:
+         *         description: Bad Request
          *       500:
          *         description: Internal Server Error
          */
-        .get((req, res) => {
-            Book.find((err, books) => {
-                if (err) {
-                    res.status(500).send(err);
-                } else {
-                    res.json(books);
-                }
-            })
-        });
+        .get(bookController.get);
 
     return bookRouter;
 };
